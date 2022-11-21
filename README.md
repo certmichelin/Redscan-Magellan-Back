@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-## REDSCAN-MAGELLAN
+## REDSCAN-MAGELLAN-BACK
 
 | Attribute     | Value                                                                                         |
 | ------------- | --------------------------------------------------------------------------------------------- |
@@ -10,11 +9,11 @@
 
 ### Objective
 
-Visualize and manage the brands & master domains.
+Manage the brands & master domains.
 
 ### Description
 
-Web application used to manage the brands & master domains including scope.
+REST API used to manage the brands.
 
 ### How to develop
 
