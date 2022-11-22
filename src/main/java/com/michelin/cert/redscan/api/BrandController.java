@@ -34,20 +34,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kong.unirest.json.JSONObject;
+
+
 /**
  * Brand API controller.
  *
+ * @author Maxime ESCOURBIAC
  * @author Axel REMACK
  */
 @RestController
 @RequestMapping("/api/brands")
-public class BrandAPIController {
+public class BrandController {
+
+    @Autowired
+    BrandService brandService;
 
     /**
      * Default constructor.s
      */
     @Autowired
-    public BrandAPIController() {
+    public BrandController() {
     }
 
     /**
@@ -57,13 +64,7 @@ public class BrandAPIController {
      */
     @GetMapping()
     public List<Brand> findAll() {
-        List<Brand> brands = null;
-        try {
-            brands = (new Brand()).findAll();
-        } catch (DatalakeStorageException ex) {
-            LogManager.getLogger(BrandAPIController.class).error(String.format("Brand API : Datalake storage exception %s", ex.getMessage()));
-        }
-        return brands;
+        return brandService.findAll();
     }
 
 

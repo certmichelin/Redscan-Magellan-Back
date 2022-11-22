@@ -24,19 +24,20 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * Application main class.
  *
  * @author Maxime ESCOURBIAC
+ * @author Axel REMACK
  */
 @SpringBootApplication
 @EnableScheduling
-public class MagellanApplication {
+public class MagellanBackApplication {
 
   /**
-   * Magellan main method.
+   * Magellan back main method.
    *
    * @param args App argument.
    * @throws Exception Exception during the run.
    */
   public static void main(String[] args) throws Exception {
-    SpringApplication.run(MagellanApplication.class, args);
+    SpringApplication.run(MagellanBackApplication.class, args);
   }
 
 }
