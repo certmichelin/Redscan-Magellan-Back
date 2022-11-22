@@ -79,7 +79,6 @@ public class BrandController {
         return brandService.find(brand);
     }
 
-
     /**
      * Create a brand.
      *
@@ -90,5 +89,7 @@ public class BrandController {
     public boolean create(@RequestBody Brand brand) {
         return brandService.create(brand);
     }
+
+
 
 }

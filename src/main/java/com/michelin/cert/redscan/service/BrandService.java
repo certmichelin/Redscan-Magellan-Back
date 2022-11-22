@@ -59,9 +59,6 @@ public class BrandService {
         List<Brand> brands = null;
         try {
             brands = (new Brand()).findAll();
-            //Brand b3 = new Brand("brand3");
-            //b3.upsert();
-            System.out.println("truc");
         } catch (DatalakeStorageException ex) {
             LogManager.getLogger(BrandService.class).error(String.format("BrandService : Datalake storage exception %s", ex.getMessage()));
         }
@@ -79,7 +76,6 @@ public class BrandService {
         Brand found = null;
         try {
             found = brand.find();
-            System.out.println(found);
         } catch (DatalakeStorageException ex) {
             LogManager.getLogger(BrandService.class).error(String.format("BrandService : Datalake storage exception %s", ex.getMessage()));
         }
@@ -95,20 +91,17 @@ public class BrandService {
      */
     public boolean create(Brand brand) {
         LogManager.getLogger(BrandService.class).info(String.format("BrandService : Create brand %s", (brand != null) ? brand.toJson() : "null"));
-        boolean create = false;
+        boolean is_created = false;
         try {
-            create = brand.create();
-            if (create && brand.getLastScanDate() == null) {
+            is_created = brand.create();
+            if (is_created && brand.getLastScanDate() == null) {
                 brand.setLastScanDate(new Date());
-                create = brand.upsert();
-                //if (create) {
-                //    rabbitTemplate.convertAndSend(brand.getFanoutExchangeName(), "", brand.toJson());
-                //}
+                is_created = brand.upsert();
             }
         } catch (DatalakeStorageException ex) {
             LogManager.getLogger(BrandService.class).error(String.format("BrandService : Datalake storage exception %s", ex.getMessage()));
         }
-        return create;
+        return is_created;
     }
 
 
