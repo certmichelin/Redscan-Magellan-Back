@@ -67,5 +67,28 @@ public class BrandController {
         return brandService.findAll();
     }
 
+    /**
+     * Get a brand.
+     *
+     * @param name Brand name.
+     * @return A specific brand.
+     */
+    @GetMapping("/{name}")
+    public Brand find(@PathVariable String name) {
+        Brand brand = new Brand(name);
+        return brandService.find(brand);
+    }
+
+
+    /**
+     * Create a brand.
+     *
+     * @param brand Brand to create.
+     * @return True if the creation succeed.
+     */
+    @PostMapping()
+    public boolean create(@RequestBody Brand brand) {
+        return brandService.create(brand);
+    }
 
 }

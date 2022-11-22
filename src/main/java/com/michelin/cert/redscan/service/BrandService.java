@@ -59,9 +59,58 @@ public class BrandService {
         List<Brand> brands = null;
         try {
             brands = (new Brand()).findAll();
+            //Brand b3 = new Brand("brand3");
+            //b3.upsert();
+            System.out.println("truc");
         } catch (DatalakeStorageException ex) {
             LogManager.getLogger(BrandService.class).error(String.format("BrandService : Datalake storage exception %s", ex.getMessage()));
         }
         return brands;
     }
+
+    /**
+     * Get a brand.
+     *
+     * @param brand Brand to find.
+     * @return Brand found.
+     */
+    public Brand find(Brand brand) {
+        LogManager.getLogger(BrandService.class).info(String.format("BrandService : Search brand by name \"%s\"", (brand != null) ? brand.getName() : "null"));
+        Brand found = null;
+        try {
+            found = brand.find();
+            System.out.println(found);
+        } catch (DatalakeStorageException ex) {
+            LogManager.getLogger(BrandService.class).error(String.format("BrandService : Datalake storage exception %s", ex.getMessage()));
+        }
+        return found;
+    }
+
+
+    /**
+     * Create Brand.
+     *
+     * @param brand Brand to create.
+     * @return True if the creation succeed.
+     */
+    public boolean create(Brand brand) {
+        LogManager.getLogger(BrandService.class).info(String.format("BrandService : Create brand %s", (brand != null) ? brand.toJson() : "null"));
+        boolean create = false;
+        try {
+            create = brand.create();
+            if (create && brand.getLastScanDate() == null) {
+                brand.setLastScanDate(new Date());
+                create = brand.upsert();
+                //if (create) {
+                //    rabbitTemplate.convertAndSend(brand.getFanoutExchangeName(), "", brand.toJson());
+                //}
+            }
+        } catch (DatalakeStorageException ex) {
+            LogManager.getLogger(BrandService.class).error(String.format("BrandService : Datalake storage exception %s", ex.getMessage()));
+        }
+        return create;
+    }
+
+
+
 }
