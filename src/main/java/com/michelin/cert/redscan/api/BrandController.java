@@ -68,6 +68,19 @@ public class BrandController {
     }
 
     /**
+     * Get all brands with pagination.
+     *
+     * @param page Page number.
+     * @param size Number of brands in each page.
+     * @return All brands in a specific page.
+     */
+    @GetMapping("/{page}/{size}")
+    public List<Brand> findAll(@PathVariable String page, @PathVariable String size) {
+        return brandService.findAll(page, size);
+    }
+
+
+    /**
      * Get a brand.
      *
      * @param name Brand name.

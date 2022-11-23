@@ -66,6 +66,24 @@ public class BrandService {
     }
 
     /**
+     * Get all brands with pagination.
+     *
+     * @param page Page number.
+     * @param size Number of brands in each page.
+     * @return All brands in a specific page.
+     */
+    public List<Brand> findAll(String page, String size) {
+        LogManager.getLogger(BrandService.class).info("BrandService : Get brands with pagination");
+        List<Brand> brands = null;
+        try {
+            brands = (new Brand()).findAll(page, size);
+        } catch (DatalakeStorageException ex) {
+            LogManager.getLogger(BrandService.class).error(String.format("BrandService : Datalake storage exception %s", ex.getMessage()));
+        }
+        return brands;
+    }
+
+    /**
      * Get a brand.
      *
      * @param brand Brand to find.
