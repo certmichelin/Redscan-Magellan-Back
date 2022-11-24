@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     
         <!-- Define dependencies versions -->
-        <redscan-utils.version>4.2.2</redscan-utils.version>
+        <redscan-utils.version>4.2.3-SNAPSHOT</redscan-utils.version>
         <log4j2.version>2.16.0</log4j2.version>
 
         <!-- Define test dependencies versions -->
@@ -34,7 +34,8 @@
         <repository>
             <id>redscan-utils</id>
             <name>Michelin CERT Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/certmichelin/Redscan-Utils</url>
+            <!-- <url>https://maven.pkg.github.com/certmichelin/Redscan-Utils</url> -->
+            <url>file://C:/Users/e032179/Documents/.m2/repository</url>
         </repository>  
     </repositories>
 
