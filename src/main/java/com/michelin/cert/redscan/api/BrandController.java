@@ -19,14 +19,7 @@ package com.michelin.cert.redscan.web;
 import com.michelin.cert.redscan.service.BrandService;
 import com.michelin.cert.redscan.utils.models.Brand;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,11 +27,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kong.unirest.json.JSONObject;
 
 
 /**
- * Brand API controller.
+ * Brand controller.
  *
  * @author Maxime ESCOURBIAC
  * @author Axel REMACK
@@ -47,61 +39,59 @@ import kong.unirest.json.JSONObject;
 @RequestMapping("/api/brands")
 public class BrandController {
 
-    @Autowired
-    BrandService brandService;
+  @Autowired
+  BrandService brandService;
 
-    /**
-     * Default constructor.s
-     */
-    @Autowired
-    public BrandController() {
-    }
+  /**
+   * Default constructor.
+   */
+  @Autowired
+  public BrandController() {  }
 
-    /**
-     * Get all brands.
-     *
-     * @return All brands.
-     */
-    @GetMapping()
-    public List<Brand> findAll() {
-        return brandService.findAll();
-    }
+  /**
+   * Get all brands.
+   *
+   * @return All brands.
+   */
+  @GetMapping()
+  public List<Brand> findAll() {
+    return brandService.findAll();
+  }
 
-    /**
-     * Get all brands with pagination.
-     *
-     * @param page Page number.
-     * @param size Number of brands in each page.
-     * @return All brands in a specific page.
-     */
-    @GetMapping("/{page}/{size}")
-    public List<Brand> findAll(@PathVariable String page, @PathVariable String size) {
-        return brandService.findAll(page, size);
-    }
+  /**
+   * Get all brands with pagination.
+   *
+   * @param page Page number.
+   * @param size Number of brands in each page.
+   * @return All brands in a specific page.
+   */
+  @GetMapping("/{page}/{size}")
+  public List<Brand> findAll(@PathVariable String page, @PathVariable String size) {
+    return brandService.findAll(page, size);
+  }
 
+  /**
+   * Get a brand.
+   *
+   * @param name Brand name.
+   * @return A specific brand.
+   */
+  @GetMapping("/{name}")
+  public Brand find(@PathVariable String name) {
+    Brand brand = new Brand(name);
+    return brandService.find(brand);
+  }
 
-    /**
-     * Get a brand.
-     *
-     * @param name Brand name.
-     * @return A specific brand.
-     */
-    @GetMapping("/{name}")
-    public Brand find(@PathVariable String name) {
-        Brand brand = new Brand(name);
-        return brandService.find(brand);
-    }
-
-    /**
-     * Create a brand.
-     *
-     * @param brand Brand to create.
-     * @return True if the creation succeed.
-     */
-    @PostMapping()
-    public boolean create(@RequestBody Brand brand) {
-        return brandService.create(brand);
-    }
+  /**
+   * Create a brand.
+   *
+   * @param brand Brand to create.
+   * @return True if the creation succeed.
+   */
+  @PostMapping()
+  public boolean create(@RequestBody Brand brand) {
+    return brandService.create(brand);
+  }
 
 
 
