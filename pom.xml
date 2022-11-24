@@ -34,9 +34,8 @@
         <repository>
             <id>redscan-utils</id>
             <name>Michelin CERT Apache Maven Packages</name>
-            <!-- <url>https://maven.pkg.github.com/certmichelin/Redscan-Utils</url> -->
-            <url>file://C:/Users/e032179/Documents/.m2/repository</url>
-        </repository>  
+            <url>https://maven.pkg.github.com/certmichelin/Redscan-Utils</url>
+        </repository>
     </repositories>
 
     <dependencies>
