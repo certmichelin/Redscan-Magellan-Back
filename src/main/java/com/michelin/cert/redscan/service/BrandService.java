@@ -103,17 +103,17 @@ public class BrandService {
    */
   public boolean create(Brand brand) {
     LogManager.getLogger(BrandService.class).info(String.format("BrandService : Create brand %s", (brand != null) ? brand.toJson() : "null"));
-    boolean is_created = false;
+    boolean created = false;
     try {
-      is_created = brand.create();
-      if (is_created && brand.getLastScanDate() == null) {
+      created = brand.create();
+      if (created && brand.getLastScanDate() == null) {
         brand.setLastScanDate(new Date());
-        is_created = brand.upsert();
+        created = brand.upsert();
       }
     } catch (DatalakeStorageException ex) {
       LogManager.getLogger(BrandService.class).error(String.format("BrandService : Datalake storage exception %s", ex.getMessage()));
     }
-    return is_created;
+    return created;
   }
 
 

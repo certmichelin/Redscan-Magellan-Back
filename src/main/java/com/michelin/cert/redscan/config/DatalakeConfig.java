@@ -33,15 +33,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DatalakeConfig {
 
-    @Value("${datalake.elastic.url}")
-    private String elasticSearchUrlProperty;
+  @Value("${datalake.elastic.url}")
+  private String elasticSearchUrlProperty;
 
-    @Autowired
-    public DatalakeConfig() {
-    }
+  @Autowired
+  public DatalakeConfig() {
+  }
 
-    @PostConstruct
-    public void initDatalakeStorage() {
-        DatalakeStorage.init(elasticSearchUrlProperty);
-    }
+  @PostConstruct
+  public void initDatalakeStorage() {
+    DatalakeStorage.init(elasticSearchUrlProperty);
+  }
 }
