@@ -19,6 +19,8 @@ package com.michelin.cert.redscan.web;
 import com.michelin.cert.redscan.service.BrandService;
 import com.michelin.cert.redscan.utils.models.Brand;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

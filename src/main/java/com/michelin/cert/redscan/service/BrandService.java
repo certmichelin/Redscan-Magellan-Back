@@ -22,6 +22,7 @@ import com.michelin.cert.redscan.utils.models.Brand;
 import com.michelin.cert.redscan.utils.models.ServiceLevel;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 
