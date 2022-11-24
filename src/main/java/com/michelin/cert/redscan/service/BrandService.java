@@ -134,6 +134,21 @@ public class BrandService {
     return success;
   }
 
-
+  /**
+   * Update Brand.
+   *
+   * @param brand Brand to update.
+   * @return True if the update succeed.
+   */
+  public boolean update(Brand brand) {
+    LogManager.getLogger(BrandService.class).info(String.format("BrandService : Update brand %s", (brand != null) ? brand.toJson() : "null"));
+    boolean success = false;
+    try {
+      success = (brand.find() != null && brand.upsert());
+    } catch (DatalakeStorageException ex) {
+      LogManager.getLogger(BrandService.class).error(String.format("BrandService : Datalake storage exception %s", ex.getMessage()));
+    }
+    return success;
+  }
 
 }

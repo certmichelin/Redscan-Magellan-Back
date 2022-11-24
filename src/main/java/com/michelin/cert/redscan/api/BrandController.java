@@ -101,5 +101,16 @@ public class BrandController {
     return brandService.delete(brand);
   }
 
+  /**
+   * Update a brand.
+   *
+   * @param name Brand name.
+   * @return True if the entity is updated.
+   */
+  @PutMapping()
+  public boolean update(@RequestBody Brand brand) {
+    return brandService.update(brand);
+  }
+
 
 }
