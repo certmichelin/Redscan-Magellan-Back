@@ -22,13 +22,7 @@ import com.michelin.cert.redscan.utils.models.Brand;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -95,6 +89,17 @@ public class BrandController {
     return brandService.create(brand);
   }
 
+  /**
+   * Delete a brand.
+   *
+   * @param name Brand name.
+   * @return True if the entity is deleted.
+   */
+  @DeleteMapping("/{name}")
+  public boolean delete(@PathVariable String name) {
+    Brand brand = new Brand(name);
+    return brandService.delete(brand);
+  }
 
 
 }

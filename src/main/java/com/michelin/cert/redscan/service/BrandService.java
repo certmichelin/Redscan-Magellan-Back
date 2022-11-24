@@ -95,7 +95,6 @@ public class BrandService {
     return found;
   }
 
-
   /**
    * Create Brand.
    *
@@ -115,6 +114,24 @@ public class BrandService {
       LogManager.getLogger(BrandService.class).error(String.format("BrandService : Datalake storage exception %s", ex.getMessage()));
     }
     return created;
+  }
+
+  /**
+   * Delete a brand.
+   *
+   * @param brand Brand to delete.
+   * @return True if the entity is deleted.
+   */
+  public boolean delete(Brand brand) {
+    LogManager.getLogger(BrandService.class).info(String.format("BrandService : Delete brand %s", (brand != null) ? brand.getName() : "null"));
+    boolean success = false;
+    try {
+      brand = brand.find();
+      success = (brand != null) && (brand.delete());
+    } catch (DatalakeStorageException ex) {
+      LogManager.getLogger(BrandService.class).error(String.format("BrandService : Datalake storage exception %s", ex.getMessage()));
+    }
+    return success;
   }
 
 
